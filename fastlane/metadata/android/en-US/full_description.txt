@@ -1,0 +1,20 @@
+A simple tally counter for things you count many times a day: tasbih and dhikr, japa mala, exercise reps, laps, people at a door, or anything else.
+
+The whole screen is one big button. Every tap gives a short vibration, so you can count without looking.
+
+<b>Features</b>
+<ul>
+<li>Multiple named counters, each with its own colour and step size</li>
+<li>Optional target with quick presets (33, 99, 100, 108)</li>
+<li>A distinct vibration (and optional sound) when the target is reached, then start a new round or keep counting; rounds are counted</li>
+<li>Count with the volume keys while the app is open</li>
+<li>Minus button, and reset with undo</li>
+<li>Keep the screen on while counting</li>
+<li>Pure black theme for OLED screens</li>
+<li>Daily history per counter with a 30-day chart, streak and best day</li>
+<li>Home-screen widget: see a counter and tap to add one</li>
+<li>Material You colours and dark theme</li>
+</ul>
+
+<b>Private by design</b>
+No ads, no tracking, no account. The app has no internet permission, so your counts never leave your phone. Free and open source under the MIT licence.

@@ -1,0 +1,1 @@
+First release: multiple counters with targets and rounds, volume-key counting, daily history, and a home-screen widget.
