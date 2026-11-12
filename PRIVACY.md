@@ -13,7 +13,10 @@ Counter collects nothing.
   between you and your backup provider; the app itself sends nothing.
 - **Deleting data.** Deleting a counter deletes its history. Uninstalling the app
   or clearing its storage deletes everything.
-- **Permissions.** Only `VIBRATE`, for the click on each count and the buzz at a
-  target.
+- **Permissions.** The app itself asks only for `VIBRATE`, for the click on each
+  count and the buzz at a target. The widget library adds `WAKE_LOCK`,
+  `RECEIVE_BOOT_COMPLETED`, `ACCESS_NETWORK_STATE` and `FOREGROUND_SERVICE`,
+  which Android uses to schedule widget updates. None of them lets the app
+  connect to the internet or read your personal data.
 
 Questions: vivek@ivy.homes

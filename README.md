@@ -38,8 +38,14 @@ internet permission**.
 | ---------- | -------------------------------------------------------------- |
 | `VIBRATE`  | The click on each count and the buzz when a target is reached. |
 
-That is all. There is deliberately **no `INTERNET` permission**, so Android
-itself guarantees your counts never leave the phone. See [PRIVACY.md](PRIVACY.md).
+The app declares nothing else. The home-screen widget library (Glance) brings
+in WorkManager, whose own manifest adds `WAKE_LOCK`, `RECEIVE_BOOT_COMPLETED`,
+`ACCESS_NETWORK_STATE` and `FOREGROUND_SERVICE` to the built APK. All four are
+normal install-time permissions that WorkManager uses to schedule widget
+updates; none of them allows a network connection or reads personal data.
+
+There is deliberately **no `INTERNET` permission**, so Android itself
+guarantees your counts never leave the phone. See [PRIVACY.md](PRIVACY.md).
 
 ## Building
 
