@@ -60,6 +60,36 @@ Release signing is optional: put a `keystore.properties` (with `storeFile`,
 the release build is signed with v2 + v3 signatures. Without it the release APK
 is unsigned, which is what F-Droid wants. Both files are git-ignored.
 
+## Releasing on Google Play
+
+```sh
+./gradlew lintRelease testDebugUnitTest
+./scripts/archive-apk.sh            # build, verify, archive
+./scripts/archive-apk.sh --force    # replace an existing archive
+```
+
+`scripts/archive-apk.sh` builds the release APK and AAB and copies them into
+`local/releases/v<version>/` as `counter-v<version>.apk` and `.aab`, each with a
+`.sha256`, plus the R8 `mapping.txt` that turns a minified stack trace from that
+build back into names. Upload the `.aab` to Play; the `.apk` is for sideloading.
+The version is read from the built APK, so the name cannot disagree with what
+shipped. The script refuses an unsigned APK and a bundle signed with a different
+key, archives a dirty tree as `v<version>-dirty-g<commit>/`, and never replaces
+an existing archive without `--force`.
+
+- **Signing.** The app uses Play App Signing: Google holds the key that signs what
+  users install, and `keystore.properties` points at the _upload_ key. A lost
+  upload key can be reset from the Play Console; a lost app signing key could not
+  be, which is why Google keeps it.
+- **Store listing.** Text, icon, feature graphic and screenshots are in
+  [`fastlane/metadata/android/en-US/`](fastlane/metadata/android/en-US), the
+  layout F-Droid also reads. Bump `versionCode` and `versionName` in
+  `app/build.gradle.kts` and add `changelogs/<versionCode>.txt` for every release.
+- **Screenshots** must be no taller than 2:1, so take them with the emulator's
+  display set to `adb shell wm size 1080x2160` (and `adb shell wm size reset`
+  afterwards). The demo counters and their 30 days of history were written
+  straight into a debug build's `counter.db` with `run-as`, rather than tapped in.
+
 ## Design decisions
 
 - **Write-through storage, never an in-memory count.** Every tap is a single
