@@ -116,6 +116,8 @@ private fun CounterRow(counter: Counter, onClick: () -> Unit) {
 private fun subtitle(counter: Counter): String? {
     val target = counter.target
     return when {
+        // "Target 100 · 0 rounds" says nothing the target alone doesn't.
+        target != null && counter.rounds == 0 -> stringResource(R.string.target_n, target)
         target != null -> stringResource(
             R.string.target_and_rounds,
             target,
